@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 if (!celsiusInput.isEmpty()) {
                     double celsius = Double.parseDouble(celsiusInput);
                     double fahrenheit = celsiusToFahrenheit(celsius);
-                    textViewFahrenheitResult.setText("華氏溫度: " + fahrenheit);
+                    textViewFahrenheitResult.setText("華氏溫度: " + String.format("%.2f", fahrenheit));
                 } else {
                     Toast.makeText(MainActivity.this, "請輸入攝氏溫度", Toast.LENGTH_SHORT).show();
                 }
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 if (!fahrenheitInput.isEmpty()) {
                     double fahrenheit = Double.parseDouble(fahrenheitInput);
                     double celsius = fahrenheitToCelsius(fahrenheit);
-                    textViewCelsiusResult.setText("攝氏溫度: " + celsius);
+                    textViewCelsiusResult.setText("攝氏溫度: " + String.format("%.2f", celsius));
                 } else {
                     Toast.makeText(MainActivity.this, "請輸入華氏溫度", Toast.LENGTH_SHORT).show();
                 }
@@ -80,3 +80,4 @@ public class MainActivity extends AppCompatActivity {
         return (fahrenheit - 32) * 5 / 9;
     }
 }
+56

@@ -40,37 +40,40 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/buttonToFahrenheit" />
 
-    <EditText
-        android:id="@+id/editTextFahrenheit"
+    <TextView
+        android:id="@+id/textViewCelsiusResult"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:hint="請輸入華氏溫度"
-        android:inputType="numberDecimal"
+        android:layout_marginTop="8dp"
+        android:text="攝氏溫度: "
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textViewFahrenheitResult" />
+        app:layout_constraintTop_toBottomOf="@id/buttonToCelsius" />
 
     <Button
         android:id="@+id/buttonToCelsius"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:text="華氏轉攝氏"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/editTextFahrenheit" />
 
-    <TextView
-        android:id="@+id/textViewCelsiusResult"
+    <EditText
+        android:id="@+id/editTextFahrenheit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="攝氏溫度: "
+        android:layout_marginTop="284dp"
+        android:hint="請輸入華氏溫度"
+        android:inputType="numberDecimal"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/buttonToCelsius" />
+        app:layout_constraintTop_toBottomOf="@id/textViewFahrenheitResult" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
