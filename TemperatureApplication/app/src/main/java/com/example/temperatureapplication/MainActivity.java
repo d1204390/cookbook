@@ -80,4 +80,3 @@ public class MainActivity extends AppCompatActivity {
         return (fahrenheit - 32) * 5 / 9;
     }
 }
-56
