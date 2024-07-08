@@ -21,8 +21,8 @@
 
     <Button
         android:id="@+id/buttonToFahrenheit"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="332dp"
+        android:layout_height="54dp"
         android:layout_marginTop="16dp"
         android:text="攝氏轉華氏"
         app:layout_constraintEnd_toEndOf="parent"
@@ -54,12 +54,11 @@
 
     <Button
         android:id="@+id/buttonToCelsius"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="349dp"
+        android:layout_height="56dp"
         android:layout_marginTop="24dp"
         android:text="華氏轉攝氏"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/editTextFahrenheit" />
 
