@@ -62,7 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
         android:layout_marginEnd="176dp"
-        android:text="新台幣存提款"
+        android:text="新台幣存/提款"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
