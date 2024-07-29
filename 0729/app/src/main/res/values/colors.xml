@@ -2,4 +2,7 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+    <color name="colorButtonPressed">#FF0000</color> <!-- 按下時的顏色 -->
+    <color name="colorButtonFocused">#00FF00</color> <!-- 聚焦時的顏色 -->
+    <color name="colorButtonDefault">#DFDFE6</color> <!-- 默認顏色 -->
 </resources>
