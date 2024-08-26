@@ -7,64 +7,36 @@
     android:layout_height="match_parent"
     tools:context=".USDexchange">
 
-    <Button
-        android:id="@+id/button8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="168dp"
-        android:text="美金換台幣"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
-    <Button
-        android:id="@+id/button9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="168dp"
-        android:layout_marginEnd="40dp"
-        android:text="台幣換美金"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
     <TextView
-        android:id="@+id/textView6"
-        android:layout_width="289dp"
-        android:layout_height="91dp"
-        android:layout_marginTop="80dp"
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="美金換匯"
-        android:textAlignment="center"
-        android:textSize="60sp"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.125" />
 
-    <LinearLayout
-        android:layout_width="406dp"
-        android:layout_height="160dp"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="178dp">
+    <Button
+        android:id="@+id/buttonExchange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="188dp"
+        android:text="換匯"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="75dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="金額:" />
-
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/textView13"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="匯率:" />
-    </LinearLayout>
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/amountEditText"
+        android:layout_width="237dp"
+        android:layout_height="52dp"
+        android:hint="請輸入金額"
+        tools:layout_editor_absoluteX="98dp"
+        tools:layout_editor_absoluteY="244dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

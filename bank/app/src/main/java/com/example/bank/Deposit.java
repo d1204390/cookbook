@@ -1,17 +1,18 @@
 package com.example.bank;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.textfield.TextInputEditText;
+
 public class Deposit extends AppCompatActivity {
 
-    private TextView balanceTextView;
-    private EditText amountEditText;
+    private TextView titleTextView;
+    private TextInputEditText amountEditText;
     private Button depositButton, withdrawButton;
-    private int balance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,30 +20,34 @@ public class Deposit extends AppCompatActivity {
         setContentView(R.layout.activity_deposit);
 
         // 初始化 UI 元素
-        balanceTextView = findViewById(R.id.balanceTextView);
-        amountEditText = findViewById(R.id.amountEditText);
-        depositButton = findViewById(R.id.depositButton);
-        withdrawButton = findViewById(R.id.withdrawButton);
-
-        // 從 Intent 或其他來源獲取初始餘額
-        balance = getIntent().getIntExtra("BALANCE_NTD", 0);
-        balanceTextView.setText("NTD餘額: " + balance);
+        titleTextView = findViewById(R.id.textView3);
+        amountEditText = findViewById(R.id.amountEditText);  // 對應你的 TextInputEditText
+        depositButton = findViewById(R.id.button4);
+        withdrawButton = findViewById(R.id.button5);
 
         // 存款按鈕點擊事件
-        depositButton.setOnClickListener(v -> {
-            int amount = Integer.parseInt(amountEditText.getText().toString());
-            balance += amount;
-            balanceTextView.setText("NTD餘額: " + balance);
+        depositButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String amountText = amountEditText.getText().toString();
+                if (!amountText.isEmpty()) {
+                    int amount = Integer.parseInt(amountText);
+                    // 這裡可以執行存款邏輯，比如更新餘額等
+                    titleTextView.setText("成功存入: " + amount + " 新台幣");
+                }
+            }
         });
 
         // 提款按鈕點擊事件
-        withdrawButton.setOnClickListener(v -> {
-            int amount = Integer.parseInt(amountEditText.getText().toString());
-            if (balance >= amount) {
-                balance -= amount;
-                balanceTextView.setText("NTD餘額: " + balance);
-            } else {
-                // 你可以在這裡添加提示，告知餘額不足
+        withdrawButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String amountText = amountEditText.getText().toString();
+                if (!amountText.isEmpty()) {
+                    int amount = Integer.parseInt(amountText);
+                    // 這裡可以執行提款邏輯，比如檢查餘額是否足夠，然後更新餘額
+                    titleTextView.setText("成功提取: " + amount + " 新台幣");
+                }
             }
         });
     }

@@ -1,17 +1,18 @@
 package com.example.bank;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.textfield.TextInputEditText;
+
 public class JPYexchange extends AppCompatActivity {
 
-    private TextView balanceTextView;
-    private EditText amountEditText;
+    private TextView titleTextView;
+    private TextInputEditText amountEditText;
     private Button exchangeButton;
-    private int balance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,23 +20,20 @@ public class JPYexchange extends AppCompatActivity {
         setContentView(R.layout.activity_jpyexchange);
 
         // 初始化 UI 元素
-        balanceTextView = findViewById(R.id.balanceTextView);
+        titleTextView = findViewById(R.id.textView3);
         amountEditText = findViewById(R.id.amountEditText);
-        exchangeButton = findViewById(R.id.exchangeButton);
-
-        // 從 Intent 或其他來源獲取初始餘額
-        balance = getIntent().getIntExtra("BALANCE_JPY", 0);
-        balanceTextView.setText("JPY餘額: " + balance);
+        exchangeButton = findViewById(R.id.buttonExchange);
 
         // 換匯按鈕點擊事件
-        exchangeButton.setOnClickListener(v -> {
-            int amount = Integer.parseInt(amountEditText.getText().toString());
-            if (balance >= amount) {
-                balance -= amount;
-                balanceTextView.setText("JPY餘額: " + balance);
-                // 你可以在這裡處理換匯操作，例如將日圓轉換為新台幣
-            } else {
-                // 你可以在這裡添加提示，告知餘額不足
+        exchangeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String amountText = amountEditText.getText().toString();
+                if (!amountText.isEmpty()) {
+                    int amount = Integer.parseInt(amountText);
+                    // 這裡可以執行換匯邏輯，比如從日圓換到新台幣
+                    titleTextView.setText("成功換匯: " + amount + " 日圓");
+                }
             }
         });
     }
