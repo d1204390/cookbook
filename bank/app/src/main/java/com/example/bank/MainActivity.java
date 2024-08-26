@@ -3,62 +3,55 @@ package com.example.bank;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
-
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ImageView ntdImageView, usdImageView, jpyImageView;
-    private TextView ntdBalanceTextView, usdBalanceTextView, jpyBalanceTextView;
-    private Button ntdButton, usdButton, jpyButton;
+    private double ntdBalance = 0.0;
+    private double usdBalance = 0.0;
+    private double jpyBalance = 0.0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this); // 啟用沉浸式介面
         setContentView(R.layout.activity_main);
+    }
 
-        // 初始化 UI 元素
-        ntdImageView = findViewById(R.id.imageView);
-        usdImageView = findViewById(R.id.imageView2);
-        jpyImageView = findViewById(R.id.imageView3);
+    public void GotoNTD(View view) {
+        Intent intent = new Intent(this, NTDActivity.class);
+        intent.putExtra("ntdBalance", ntdBalance);
+        startActivityForResult(intent, 1); // 啟動 NTDActivity 並等待結果
+    }
 
-        ntdBalanceTextView = findViewById(R.id.textView);
-        usdBalanceTextView = findViewById(R.id.textView2);
-        jpyBalanceTextView = findViewById(R.id.textView4);
+    public void Exchange(View view) {
+        Intent intent = new Intent(this, ExchangeActivity.class);
+        intent.putExtra("ntdBalance", ntdBalance); // 傳遞台幣餘額給 ExchangeActivity
+        startActivityForResult(intent, 2); // 啟動 ExchangeActivity 並等待結果
+    }
 
-        ntdButton = findViewById(R.id.button3);
-        usdButton = findViewById(R.id.button);
-        jpyButton = findViewById(R.id.button2);
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            if (requestCode == 1 || requestCode == 2) {
+                // 更新台幣餘額
+                ntdBalance = data.getDoubleExtra("ntdBalance", 0.0);
+                TextView ntdBalanceView = findViewById(R.id.NTDbalance);
+                ntdBalanceView.setText(String.valueOf(ntdBalance));
 
-        // 設置按鈕點擊事件
-        ntdButton.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, Deposit.class);
-            startActivity(intent);
-        });
+                // 如果是換匯操作，更新外幣餘額
+                if (requestCode == 2) {
+                    usdBalance = data.getDoubleExtra("usdBalance", usdBalance);
+                    jpyBalance = data.getDoubleExtra("jpyBalance", jpyBalance);
 
-        usdButton.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, USDexchange.class);
-            startActivity(intent);
-        });
+                    TextView usdBalanceView = findViewById(R.id.usdBalance);
+                    TextView jpyBalanceView = findViewById(R.id.jpyBalance);
 
-        jpyButton.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, JPYexchange.class);
-            startActivity(intent);
-        });
-
-        // 設置視窗邊到邊的介面
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+                    usdBalanceView.setText(String.valueOf(usdBalance));
+                    jpyBalanceView.setText(String.valueOf(jpyBalance));
+                }
+            }
+        }
     }
 }
