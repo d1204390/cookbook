@@ -1,24 +1,42 @@
 package com.example.bank;
 
 import android.os.Bundle;
-
-import androidx.activity.EdgeToEdge;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class USDexchange extends AppCompatActivity {
+
+    private TextView balanceTextView;
+    private EditText amountEditText;
+    private Button exchangeButton;
+    private int balance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_usdexchange);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+
+        // 初始化 UI 元素
+        balanceTextView = findViewById(R.id.balanceTextView);
+        amountEditText = findViewById(R.id.amountEditText);
+        exchangeButton = findViewById(R.id.exchangeButton);
+
+        // 從 Intent 或其他來源獲取初始餘額
+        balance = getIntent().getIntExtra("BALANCE_USD", 0);
+        balanceTextView.setText("USD餘額: " + balance);
+
+        // 換匯按鈕點擊事件
+        exchangeButton.setOnClickListener(v -> {
+            int amount = Integer.parseInt(amountEditText.getText().toString());
+            if (balance >= amount) {
+                balance -= amount;
+                balanceTextView.setText("USD餘額: " + balance);
+                // 你可以在這裡處理換匯操作，例如將美金轉換為新台幣
+            } else {
+                // 你可以在這裡添加提示，告知餘額不足
+            }
         });
     }
 }
